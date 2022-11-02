@@ -1,0 +1,211 @@
+* {
+    font-family: 'Roboto', sans-serif;
+
+}
+
+html, body {
+    margin:0px;
+    padding:0px;
+    background: #e2e1e0;
+}
+
+/****************************
+Top Nav
+****************************/
+.top-nav{
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: 64px;
+    background-color: turquoise;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.top-nav nav {
+    display: flex;
+    flex-direction: row;
+    margin-right: 32px;
+}
+
+
+  /* Basic link styling */
+.top-nav a {
+    /*--text-color: var(--color-shades-dark);*/
+    --text-color: #FFF;
+    
+    border-block-end: 3px solid var(--border-color, transparent);
+    color: var(--text-color);
+    padding: 0.1rem;
+    text-decoration: none;
+  }
+  
+  /* Change the border-color on :hover and :focus */
+.top-nav a:where(:hover, :focus) {
+    --border-color: var(--text-color);
+  }
+
+  .top-nav .logo
+{
+    font-size: 3em;
+}
+/***************************
+* Main
+****************************/
+main{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+main aside {
+    display: flex;
+    flex-direction: column;
+}
+
+/****************************
+Recherche
+*****************************/
+.recherche {
+    padding: 16px 16px;
+    width: 100vw;
+    
+}
+
+/********************
+Section tri
+**********************/
+
+.tri{
+    padding: 16px 16px;
+    display: flex;
+    align-items: start;
+    width: 100%;
+}
+.tri .controle{
+    display: flex;
+
+}
+.tri .controle .liste-tri{
+    display: flex;
+    
+}
+.tri .controle .liste-tri .choixTri{
+    padding-left: 16px;
+}
+/********************
+Section filtre
+**********************/
+
+.filtre{
+    padding: 16px 16px;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    width: 100%;
+    
+}
+.filtre .controle {
+    display: flex;
+    
+}
+.filtre ul{
+    margin:0px;
+    padding: 0px 0px 0px 16px;
+}
+
+.filtre .controle .liste-categorie div ul{
+    display: none;
+}
+
+.filtre .controle .liste-categorie div:hover ul{
+    display: block;
+    position :absolute;
+    background-color: azure;
+    min-width: 150px;
+    min-height: 100px;
+}
+
+.filtre [data-js-actif='1']{
+    border: 1px solid #CCC;
+}
+.filtre .choixFiltre{
+    list-style-type: none;
+    padding: 4px;
+}
+
+.filtre .choixFiltre:hover{
+    background-color: rgba(200,200,200,0.5);
+}
+
+.filtre .liste-categorie{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+
+
+/**************************
+Section catalogue
+******************************/
+.catalogue{
+    padding: 16px 16px;
+    display: grid;
+    grid-template-columns : repeat(auto-fit, minmax(200px, .25fr));
+    gap:16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+/* Box shadow - https://codepen.io/sdthornton/pen/wBZdXq*/
+.catalogue .carte {
+    min-height: 250px;
+    overflow-y: hidden;
+    background-color: #fff;
+    padding: 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    display: flex;
+    flex-direction: column;
+}
+.catalogue .carte .contenu {
+    text-overflow: ellipsis;
+    flex-grow: 1;
+}
+.catalogue .carte header{
+    /*position: absolute;*/
+    
+}
+.catalogue .carte img {
+    object-fit: cover;
+    max-width: 100%;
+}
+
+
+/**********************
+Modal
+https://css-tricks.com/how-to-implement-and-style-the-dialog-element/
+*********************/
+dialog {
+    border: none;
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    padding: 8px;
+    max-width: 400px;
+}
+      
+dialog .btn-ferme-dialogue:hover{
+    background-color: #CCC;
+}
+
+.dia-details img {
+    object-fit: cover;
+    max-width: 100%;
+}
+
+/************************
+Utilitaire
+************************/
+
+.filler {
+    flex-grow: 1;
+}
