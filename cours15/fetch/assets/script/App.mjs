@@ -12,7 +12,14 @@ export default class App {
         routeur.ajouterRoute("personnage", this.getPersonnage.bind(this));
         routeur.ajouterRoute("espece", this.getEspece.bind(this));
         routeur.ajouterRoute("emplacement", this.getEmplacement.bind(this));
+        routeur.ajouterRoute("vehicule", this.getFilm.bind(this));
+        routeur.ajouterRoute("", ()=>{
+            console.log("accueil");
+            routeur.naviguer("film", true);
+
+        });
         
+        routeur.demarrer();
     }
 
     getFilm() {
@@ -34,6 +41,7 @@ export default class App {
         console.log(asyncData);
 
     }
+    
 
     getPersonnage() {
         console.log("Les personnages");

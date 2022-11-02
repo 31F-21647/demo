@@ -8,9 +8,19 @@ export default class Routeur{
     #routes ={}
 
     constructor(){
-        //window.addEventListener("hashchange", this.changerRoute.bind(this));
+        window.addEventListener("popstate", this.dePopState.bind(this));
+
         document.querySelectorAll("[href^='#!/']").forEach((lien)=>{
-            lien.addEventListener("click", this.changerRoute.bind(this));
+            lien.addEventListener("click", (e)=>{
+                e.preventDefault();
+                let cible = e.target;
+                let hash = cible.hash;
+                console.log(hash)
+                console.log(e);
+                history.pushState({}, "", hash);
+                this.changerRoute(hash);
+
+            });
         })
     }
     /**
@@ -20,19 +30,42 @@ export default class Routeur{
      */
     ajouterRoute(route, cb){
         this.#routes[route] = {cb:cb};
-        //console.log (this.#routes)
+        console.log (this.#routes)
+        
+    }
+    naviguer(route, redirection){
+        let hash = `#!/${route}`;
+        if(redirection){
+            history.replaceState({}, "", hash);
+        }
+        else{
+            history.pushState({}, "", hash);
+        }
+        console.log(hash, route)
+        this.changerRoute(hash);
+    }
+    demarrer(){
+        let hash = location.hash;
+        if(!hash.includes("#!/")){
+            hash = "#!/";
+        }
+        history.pushState({}, "", hash);
+        this.changerRoute(hash);
+        
+    }
+
+    dePopState(e){
+        console.log(e);
+        let hash = location.hash;
+        this.changerRoute(hash);
     }
     /**
      * Appelé sur le changement du hash ou sur le click sur un lien avec un hash bang
-     * @param {HashChangeEvent} e 
+     * 
      */
-    changerRoute(e){
-        e.preventDefault();
-        console.log(e.currentTarget.href);
-        this.#routeActive = e.currentTarget.href.match("#!/(.*)$")[1].replace("/", "");
-        window.location = e.currentTarget.href;
-        //this.#routeActive = window.location.hash.match("#!/(.*)$")[1].replace("/", "");
-        //console.log(this.#routeActive)
+    changerRoute(hash){
+        this.#routeActive = hash.match("#!/(.*)$")[1].replace("/", "");
+        
         if(this.#routes[this.#routeActive]?.cb){
             this.#routes[this.#routeActive].cb();
         }
